@@ -42,6 +42,3 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
     stop("Invalid method. Use 'TOST' or 'CI'.")
   }
 }
-
-x = -5
-sign(x) * x
