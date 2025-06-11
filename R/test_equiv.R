@@ -1,5 +1,6 @@
 source("R/ci.R")
 source("R/tost.R")
+source("R/utils.R")
 
 test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   #' Test equivalence of mixed model parameter
@@ -25,10 +26,14 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
     stop("The argument 'model' must be of class 'lmerModLmerTest'.")
   }
   if (!is.character(method)) {
-    stop("The argument 'method' must be a character vector.")
+    stop("The argument 'method' must be an uppercase character vector.")
   }
   if (!is.numeric(mmd)) {
     stop("The argument 'mmd' must be numeric.")
+  }
+
+  if (!is.uppercase(method)){
+    stop("The argument 'method' must be an uppercase character vector")
   }
 
   # make sure mmd is positive (handle [-mmd, +mmd] automatically)
