@@ -1,2 +1,44 @@
-# test_equiv
-Equivalence tests of mixed model parameters
+# mixequiv
+Equivalence testing of linear mixed model fixed effects parameters
+
+# Installation
+```r
+devtools::install_github("w-decker/mixequiv")
+```
+
+# Usage
+
+## Some libraries we will use
+```r
+library(mixequiv)
+library(lme4, quietly = T)
+library(lmerTest, quietly = T)
+library(tidyverse, quietly = T)
+```
+
+## Load some data
+```r
+data(iris) 
+
+df <- iris %>%
+  select(Sepal.Width, Petal.Width, Species) %>%
+  mutate(
+    Species = as.factor(Species)
+  )
+```
+
+## Define linear model
+```r
+model <- lmer(Sepal.Width ~ Petal.Width + (1 | Species), 
+              data = df, REML = F, control = lmerControl(optimizer = "bobyqa"))
+```
+
+## Define minimal meaningful difference (MMD)
+```r
+mmd <- 0.3
+```
+
+## Test equivalence
+```r
+results <- test_equiv(model, term = "Petal.Width", method = "TOST", mmd = mmd)
+```
