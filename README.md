@@ -12,7 +12,7 @@ devtools::install_github("w-decker/mixequiv")
 ```r
 library(mixequiv)
 library(lme4, quietly = T)
-library(lmerTest, quietly = T)
+library(lmerTest, quietly = T) # MUST LOAD `lmerTest` to estimate DoF!
 library(tidyverse, quietly = T)
 ```
 
