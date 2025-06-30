@@ -42,3 +42,22 @@ mmd <- 0.3
 ```r
 results <- test_equiv(model, term = "Petal.Width", method = "TOST", mmd = mmd)
 ```
+
+## See results
+```r
+summary(results)
+```
+```yaml
+Equivalence Test Summary
+-------------------------
+  Estimate: 0.741
+  Degrees of Freedom: 147.399
+  Standard Error: 0.119
+
+TOST results:
+  t1: 8.779, p1: 0.000
+  t2: 3.717, p2: 1.000
+
+Alpha level: 0.05 
+Result: Not Equivalent 
+```
