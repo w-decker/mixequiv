@@ -1,7 +1,7 @@
 # mixequiv
 Equivalence testing of linear mixed model fixed effects parameters
 
-#' @importFrom stats pt qt
+![R-CMD-check](https://github.com/w-decker/mixequiv/actions/workflows/R-CMD-check.yaml/badge.svg)
 
 # Installation
 ```r
