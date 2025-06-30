@@ -1,6 +1,8 @@
 # mixequiv
 Equivalence testing of linear mixed model fixed effects parameters
 
+#' @importFrom stats pt qt
+
 # Installation
 ```r
 devtools::install_github("w-decker/mixequiv")

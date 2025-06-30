@@ -1,4 +1,3 @@
-
 get_lmer_values <- function(model, term, alpha = 0.05) {
   #' Get values from lmer object
   #'

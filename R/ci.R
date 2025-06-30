@@ -1,6 +1,3 @@
-source("R/get_lmer_values.R")
-source("R/evalci.R")
-
 CI <- function(model, mmd, term, alpha = 0.05) {
   #' Confidence interval equivalence test
   #'

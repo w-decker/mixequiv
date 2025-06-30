@@ -1,5 +1,3 @@
-source("R/get_lmer_values.R")
-
 TOST <- function(model, mmd, term, alpha = 0.05) {
   #' Two one-sided t-test
   #'

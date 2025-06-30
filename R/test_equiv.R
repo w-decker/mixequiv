@@ -1,8 +1,3 @@
-source("R/ci.R")
-source("R/tost.R")
-source("R/get_lmer_values.R")
-source("R/isuppercase.R")
-
 test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   #' Test equivalence of mixed model parameter
   #'
@@ -34,7 +29,7 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   }
 
   # make sure mmd is positive (handle [-mmd, +mmd] automatically)
-  mmd = sign(mmd) * mmd
+  mmd <- sign(mmd) * mmd
 
   if (method == "TOST") {
     res <- TOST(model = model, mmd = mmd, term = term, alpha = alpha)
