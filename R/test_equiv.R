@@ -40,10 +40,12 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   mmd = sign(mmd) * mmd
 
   if (method == "TOST") {
-    return(TOST(model = model, mmd = mmd, term = term, alpha = alpha))
+    res <- TOST(model = model, mmd = mmd, term = term, alpha = alpha)
   } else if (method == "CI") {
-    return(CI(model = model, mmd = mmd, term = term, alpha = alpha))
+    res <- CI(model = model, mmd = mmd, term = term, alpha = alpha)
   } else {
     stop("Invalid method. Use 'TOST' or 'CI'.")
   }
+  class(res) <- "mixequivResults"
+  return(res)
 }
