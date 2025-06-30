@@ -34,16 +34,6 @@ TOST <- function(model, mmd, term, alpha = 0.05) {
   # Determine equivalence
   equivalent <- max(p1, p2) < alpha
 
-  # Print formatted output
-  cat("TOST Results:\n")
-  cat(sprintf("  Estimate (b): %.3f\n", b))
-  cat(sprintf("  Degrees of Freedom (df): %.3f\n", df))
-  cat(sprintf("  Standard Error (SE): %.3f\n", se))
-  cat(sprintf("  t1: %.3f, p1: %.3f\n", t1, p1))
-  cat(sprintf("  t2: %.3f, p2: %.3f\n", t2, p2))
-  cat(sprintf("  Alpha: %.3f\n", alpha))
-  cat(sprintf("  Result: %s\n", ifelse(equivalent, "Equivalent", "Not Equivalent")))
-
   # Return all values as a list
   return(list(
     estimate = b,

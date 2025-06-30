@@ -57,17 +57,6 @@ CI <- function(model, mmd, term, alpha = 0.05) {
   # Evaluate equivalence
   equivalent <- evalci(ci, mmd)
 
-  # Print formatted output
-  cat("Confidence Interval (CI) Results:\n")
-  cat(sprintf("  Estimate (b): %.3f\n", b))
-  cat(sprintf("  Degrees of Freedom (df): %.3f\n", df))
-  cat(sprintf("  Standard Error (SE): %.3f\n", se))
-  cat(sprintf("  Critical t-value (t_crit): %.3f\n", t_crit))
-  cat(sprintf("  Confidence Interval: [%.3f, %.3f]\n", lower, upper))
-  cat(sprintf("  Minimal Meaningful Difference (MMD): %.3f\n", mmd))
-  cat(sprintf("  Alpha: %.3f\n", alpha))
-  cat(sprintf("  Result: %s\n", ifelse(equivalent, "Equivalent", "Not Equivalent")))
-
   # Return all values as a list
   return(list(
     estimate = b,
