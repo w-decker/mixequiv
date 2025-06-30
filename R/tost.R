@@ -1,4 +1,4 @@
-source("R/utils.R")
+source("R/get_lmer_values.R")
 
 TOST <- function(model, mmd, term, alpha = 0.05) {
   #' Two one-sided t-test
@@ -44,6 +44,7 @@ TOST <- function(model, mmd, term, alpha = 0.05) {
     t2 = t2,
     p2 = p2,
     alpha = alpha,
+    mmd = mmd,
     equivalent = equivalent
   ))
 }

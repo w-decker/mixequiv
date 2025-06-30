@@ -1,6 +1,7 @@
 source("R/ci.R")
 source("R/tost.R")
-source("R/utils.R")
+source("R/get_lmer_values.R")
+source("R/isuppercase.R")
 
 test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   #' Test equivalence of mixed model parameter
