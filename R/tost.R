@@ -10,6 +10,7 @@ TOST <- function(model, mmd, term, alpha = 0.05) {
   #' @param mmd minimal meaningful difference
   #' @param term model term
   #' @param alpha desired alpha value
+  #' @importFrom stats pt qt
   #' @return list of results
   #'
   #' @export

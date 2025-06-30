@@ -4,13 +4,18 @@ Version: 0.0.0.2000
 Authors@R: 
     person("Will", "Decker", , "will.decker@gatech.edu", role = c("aut", "cre"))
 Description: To test the absence of an effect, one can use equivalence testing. There are a multitude of approaches. See [Lakens (2022, Ch. 9)](https://lakens.github.io/statistical_inferences/09-equivalencetest.html) for details. `mixequiv` capitalizes on two approaches to deteremine equivalence: the confidence interval method and the two one-sided t-test. 
-License: `use_mit_license()`,
+License: MIT + file LICENSE,
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
-VignetteBuilder: knitr
+    testthat (>= 3.0.0),
+    lmerTest,
+    lme4,
+    tidyverse
+BuildVignettes: false
 Config/testthat/edition: 3
+Imports:
+    stringr

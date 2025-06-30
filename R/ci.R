@@ -11,6 +11,7 @@ CI <- function(model, mmd, term, alpha = 0.05) {
   #' @param term model term
   #' @param alpha desired alpha
   #'
+  #' @importFrom stats pt qt
   #' @return list of results
   #'
   #' @export

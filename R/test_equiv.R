@@ -17,10 +17,6 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   #'
   #' @return list of results
   #'
-  #' @examples
-    #' test_equiv(model, method = "TOST", mmd = 5, term = "X1:X2", alpha = 0.001)
-    #' test_equiv(model, method = "CI", mmd = 0.1, term = "X1:X2", alpha = 0.05)
-  #'
   #' @export
 
   if (!inherits(model, "lmerModLmerTest")) {

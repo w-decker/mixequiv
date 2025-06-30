@@ -24,8 +24,3 @@ list of results
 Execute an equivalence test (TOST or CI approach) on a mixed model parameter
 with a specified minimal meaningful difference and desired alpha.
 }
-\examples{
-test_equiv(model, method = "TOST", mmd = 5, term = "X1:X2", alpha = 0.001)
-test_equiv(model, method = "CI", mmd = 0.1, term = "X1:X2", alpha = 0.05)
-
-}
