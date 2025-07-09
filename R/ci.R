@@ -17,6 +17,10 @@ CI <- function(model, mmd, term, alpha = 0.05) {
     stop("The argument 'model' must be of class 'lmerModLmerTest'.")
   }
 
+  if (is.null(names(mmd)) && length(mmd) == 1) {
+    mmd <- c(lower = -abs(mmd), upper = abs(mmd))
+  }
+
   vals <- get_lmer_values(model, term, alpha = alpha)
   b <- vals[['estimate']]
   df <- vals[['df']]

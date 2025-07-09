@@ -1,4 +1,4 @@
-test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
+test_equiv <- function(model, method, mmd, mmd_lower, mmd_upper, term, alpha = 0.05) {
   #' Test equivalence of mixed model parameter
   #'
   #' Execute an equivalence test (TOST or CI approach) on a mixed model parameter
@@ -7,6 +7,8 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   #' @param model lmer object
   #' @param method desired equivalence test approach ("CI" or "TOST")
   #' @param mmd minimal meaningful difference
+  #' @param mmd_lower minimal meaningful difference lower boundary
+  #' @param mmd_upper minimal meaningful difference upper boundary
   #' @param term model term
   #' @param alpha desired alpha
   #'
@@ -15,10 +17,10 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
   #' @export
 
   if (!inherits(model, "lmerModLmerTest")) {
-    stop("The argument 'model' must be of class 'lmerModLmerTest'.")
+    stop("The argument 'model' must be of class 'lmerModLmerTest'")
   }
   if (!is.character(method)) {
-    stop("The argument 'method' must be an uppercase character vector.")
+    stop("The argument 'method' must be an uppercase character vector")
   }
   if (!is.numeric(mmd)) {
     stop("The argument 'mmd' must be numeric.")
@@ -28,8 +30,16 @@ test_equiv <- function(model, method, mmd, term, alpha = 0.05) {
     stop("The argument 'method' must be an uppercase character vector")
   }
 
-  # make sure mmd is positive (handle [-mmd, +mmd] automatically)
-  mmd <- sign(mmd) * mmd
+  if (!missing(mmd) && (missing(mmd_lower) || missing(mmd_upper))) {
+    mmd <- c(lower = -abs(mmd), upper = abs(mmd))
+  } else if (!missing(mmd_lower) && !missing(mmd_upper)) {
+    if (mmd_lower > mmd_upper) {
+      stop("'mmd_lower' must be less than 'mmd_upper'")
+    }
+    mmd <- c(lower = mmd_lower, upper = mmd_upper)
+  } else {
+    stop("You must provide either 'mmd' or both 'mmd_lower' and 'mmd_upper'")
+  }
 
   if (method == "TOST") {
     res <- TOST(model = model, mmd = mmd, term = term, alpha = alpha)

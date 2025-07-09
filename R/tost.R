@@ -17,17 +17,21 @@ TOST <- function(model, mmd, term, alpha = 0.05) {
     stop("The argument 'model' must be of class 'lmerModLmerTest'.")
   }
 
+  if (is.null(names(mmd)) && length(mmd) == 1) {
+    mmd <- c(lower = -abs(mmd), upper = abs(mmd))
+  }
+
   vals <- get_lmer_values(model, term, alpha = alpha)
   b <- vals[['estimate']]
   df <- vals[['df']]
   se <- vals[['se']]
 
   # t-test 1
-  t1 <- (b - (-mmd)) / se
+  t1 <- (b - (mmd['lower'])) / se
   p1 <- 1 - pt(t1, df = df)
 
   # t-test 2
-  t2 <- (b - mmd) / se
+  t2 <- (b - mmd['upper']) / se
   p2 <- pt(t2, df = df)
 
   # Determine equivalence

@@ -16,7 +16,7 @@ evalci <- function(ci, mmd) {
   upper <- ci["upper"]
 
   # Check if MMD is within the confidence interval
-  if (lower >= -mmd && upper <= mmd) {
+  if (lower >= mmd['lower'] && upper <= mmd['upper']) {
     return(TRUE)  # MMD is within the CI
   } else {
     return(FALSE) # MMD is outside the CI
