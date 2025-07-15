@@ -16,8 +16,8 @@ test_equiv <- function(model, method, mmd, mmd_lower, mmd_upper, term, alpha = 0
   #'
   #' @export
 
-  if (!inherits(model, "lmerModLmerTest")) {
-    stop("The argument 'model' must be of class 'lmerModLmerTest'")
+  if (!any(inherits(model, "lmerModLmerTest"), inherits(model, "glmerMod"), inherits(model, "glmmTMB"))) {
+    stop("The argument 'model' must be of class 'lmerModLmerTest' or 'glmerMod' or 'glmmTMB'")
   }
   if (!is.character(method)) {
     stop("The argument 'method' must be an uppercase character vector")
@@ -41,13 +41,23 @@ test_equiv <- function(model, method, mmd, mmd_lower, mmd_upper, term, alpha = 0
     stop("You must provide either 'mmd' or both 'mmd_lower' and 'mmd_upper'")
   }
 
-  if (method == "TOST") {
-    res <- TOST(model = model, mmd = mmd, term = term, alpha = alpha)
-  } else if (method == "CI") {
-    res <- CI(model = model, mmd = mmd, term = term, alpha = alpha)
+  if (!any(inherits(model, "glmerMod"), inherits(model, "glmmTMB"))){
+     if (method == "TOST") {
+      res <- TOST(model = model, mmd = mmd, term = term, alpha = alpha)
+    } else if (method == "CI") {
+      res <- CI(model = model, mmd = mmd, term = term, alpha = alpha)
+    } else if (method == "TOZT") {
+      res <- TOZT(model = model, mmd = mmd, term = term, alpha = alpha)
+    } else {
+      stop("Invalid method. Use 'TOST', 'CI', or 'TOZT'.")
+    }
   } else {
-    stop("Invalid method. Use 'TOST' or 'CI'.")
+    if (method != "TOZT") {
+      stop("For 'glmerMod' or 'glmmTMB' models, only the 'TOZT' method is available.")
+    }
+    res <- TOZT(model = model, mmd = mmd, term = term, alpha = alpha)
   }
+
   class(res) <- "mixequivResults"
   return(res)
 }

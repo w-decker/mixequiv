@@ -1,5 +1,5 @@
 # mixequiv
-Equivalence testing of linear mixed model fixed effects parameters
+Equivalence testing of (generalized) linear mixed model fixed effects parameters
 
 ![R-CMD-check](https://github.com/w-decker/mixequiv/actions/workflows/R-CMD-check.yaml/badge.svg)
 

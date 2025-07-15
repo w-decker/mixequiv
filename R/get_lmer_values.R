@@ -10,12 +10,16 @@ get_lmer_values <- function(model, term, alpha = 0.05) {
   #'
   #' @export
 
-  if (!inherits(model, "lmerModLmerTest")) {
-    stop("The argument 'model' must be of class 'lmerModLmerTest'.")
+  if (!any(inherits(model, "lmerModLmerTest"), inherits(model, "glmerMod"), inherits(model, "glmmTMB"))) {
+    stop("The argument 'model' must be of class 'lmerModLmerTest' or 'glmerMod' or 'glmmTMB'")
   }
 
   # Extract summary coefficients
-  coefficients <- summary(model)$coefficients
+  if (!inherits(model, "glmmTMB")) {
+    coefficients <- summary(model)$coefficients
+  } else {
+    coefficients <- summary(model)$coefficients$cond
+  }
 
   # Ensure the term exists in the model
   if (!term %in% rownames(coefficients)) {
@@ -24,11 +28,16 @@ get_lmer_values <- function(model, term, alpha = 0.05) {
 
   # Extract values
   estimate <- coefficients[term, "Estimate"]
-  df <- coefficients[term, "df"]
   se <- coefficients[term, "Std. Error"]
 
+  if (inherits(model, "lmerModLmerTest")) {
+    df <- coefficients[term, "df"]
+    t_crit <- qt(1 - alpha, df = df)
+  } else {
+    df <- NULL
+    t_crit <- NULL
+  }
   # Calculate critical t-value
-  t_crit <- qt(1 - alpha, df = df)
 
   # Return as a named list
   return(list(estimate = estimate, df = df, se = se, t_crit = t_crit))

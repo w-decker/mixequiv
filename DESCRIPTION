@@ -1,9 +1,9 @@
 Package: mixequiv
-Title: Equivalence testing of linear mixed model fixed effects parameters
-Version: 0.0.0.2000
+Title: Equivalence testing of (generalized) linear mixed model fixed effects parameters
+Version: 0.0.0.3000
 Authors@R: 
     person("Will", "Decker", email = "will.decker@gatech.edu", role = c("aut", "cre"))
-Description: To test the absence of an effect, one can use equivalence testing. There are a multitude of approaches. See [Lakens (2022, Ch. 9)](https://lakens.github.io/statistical_inferences/09-equivalencetest.html) for details. `mixequiv` capitalizes on two approaches to deteremine equivalence: the confidence interval method and the two one-sided t-test. 
+Description: To test the absence of an effect, one can use equivalence testing. There are a multitude of approaches. See [Lakens (2022, Ch. 9)](https://lakens.github.io/statistical_inferences/09-equivalencetest.html) for details. `mixequiv` capitalizes on two approaches to deteremine equivalence: the confidence interval method and the two one-sided t-test/z-test. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -14,7 +14,8 @@ Suggests:
     testthat (>= 3.0.0),
     lmerTest,
     lme4,
-    tidyverse
+    tidyverse,
+    glmmTMB
 BuildVignettes: false
 Config/testthat/edition: 3
 Imports:
