@@ -22,17 +22,20 @@ test_equiv <- function(model, method, mmd, mmd_lower, mmd_upper, term, alpha = 0
   if (!is.character(method)) {
     stop("The argument 'method' must be an uppercase character vector")
   }
-  if (!is.numeric(mmd)) {
-    stop("The argument 'mmd' must be numeric.")
-  }
 
   if (!is.uppercase(method)){
     stop("The argument 'method' must be an uppercase character vector")
   }
 
   if (!missing(mmd) && (missing(mmd_lower) || missing(mmd_upper))) {
+    if (!is.numeric(mmd)) {
+      stop("The argument 'mmd' must be numeric.")
+    }
     mmd <- c(lower = -abs(mmd), upper = abs(mmd))
   } else if (!missing(mmd_lower) && !missing(mmd_upper)) {
+    if (!is.numeric(mmd_lower) || !is.numeric(mmd_upper)) {
+      stop("The arguments 'mmd_lower' and 'mmd_upper' must be numeric.")
+    }
     if (mmd_lower > mmd_upper) {
       stop("'mmd_lower' must be less than 'mmd_upper'")
     }
