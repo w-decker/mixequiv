@@ -1,4 +1,4 @@
-test_equiv <- function(model, method, mmd, mmd_lower, mmd_upper, term, alpha = 0.05) {
+test_equiv <- function(model, method, mmd = NULL, mmd_lower, mmd_upper, term, alpha = 0.05) {
   #' Test equivalence of mixed model parameter
   #'
   #' Execute an equivalence test (TOST or CI approach) on a mixed model parameter
@@ -27,7 +27,7 @@ test_equiv <- function(model, method, mmd, mmd_lower, mmd_upper, term, alpha = 0
     stop("The argument 'method' must be an uppercase character vector")
   }
 
-  if (!missing(mmd) && (missing(mmd_lower) || missing(mmd_upper))) {
+  if (!is.null(mmd) && (missing(mmd_lower) || missing(mmd_upper))) {
     if (!is.numeric(mmd)) {
       stop("The argument 'mmd' must be numeric.")
     }

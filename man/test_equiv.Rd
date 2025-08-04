@@ -4,7 +4,7 @@
 \alias{test_equiv}
 \title{Test equivalence of mixed model parameter}
 \usage{
-test_equiv(model, method, mmd, mmd_lower, mmd_upper, term, alpha = 0.05)
+test_equiv(model, method, mmd = NULL, mmd_lower, mmd_upper, term, alpha = 0.05)
 }
 \arguments{
 \item{model}{lmer object}
